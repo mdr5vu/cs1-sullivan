@@ -1,0 +1,46 @@
+module list
+
+--a polymorphic list abstract data type
+
+import bool
+
+data list a = nil | cons a (list a)
+
+infixr 7 ::, ++
+
+data list' a = nil' | (::) a (list' a)
+
+li: list' bool
+li = true :: false :: true :: true :: nil'
+
+lO: list' Nat
+lO = nil'
+
+l1: list' Nat
+l1 = 1 :: nil'
+
+l2: list' Nat
+l2 = 1 :: 2 :: nil'
+
+l3: list' Nat
+l3 = 1 :: 2 :: 3 :: nil'
+
+length: list a -> Nat
+length nil = 0
+length (cons n l') = S (length l')
+
+length': list' a -> Nat
+length' nil' = 0
+length' (n::l') = S (length' l')
+
+append: list a -> list a -> list a
+append nil m = m
+append (cons n l1') l2 = cons n (append l1' l2)
+
+append': list' a -> list' a -> list' a
+append' nil' m = m
+append' (n::l1') l2 = n :: (append' l1' l2)
+
+|||append as an infix operator ++
+(++): list a -> list a -> list a
+(++) nil

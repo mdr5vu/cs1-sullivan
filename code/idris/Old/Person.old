@@ -1,0 +1,31 @@
+data Person' = mkPerson' String Nat Nat bool
+
+--functions
+
+-- projection functions ("getters")
+
+getName': Person' -> String
+getName' (mkPerson' name age height gender) = name
+
+getAge': Person' -> Nat
+getAge' (mkPerson' name age height gender) = age
+
+getHeight': Person' -> Nat
+getHeight' (mkPerson' name age height gender) = height
+
+getGender': Person' -> bool
+getGender' (mkPerson' name age height gender) = gender
+
+-- field override functions ("setters")
+
+setName': Person' -> String -> Person'
+setName' (mkPerson' n a h g) n' = mkPerson' n' a h g
+
+setAge': Person' -> Nat -> Person'
+setAge' (mkPerson' n a h g) a' = mkPerson' n a' h g
+
+setHeight': Person' -> Nat -> Person'
+setHeight' (mkPerson' n a h g) h' = mkPerson' n a h' g
+
+setGender': Person' -> bool -> Person'
+setGender' (mkPerson' n a h g) g' = mkPerson' n a h g'
